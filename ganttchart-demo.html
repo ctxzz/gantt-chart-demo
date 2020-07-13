@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+  <script src="jquery.ganttView.js"></script>
+  <link rel="stylesheet" href="jquery.ganttView.css">
+</head>
+
+<body>
+  <p>video duration(sec): <textarea id="videoDuration">7200</textarea></p>
+  <p>scale:
+    <select id="ganttScale">
+      <option value="1">1秒</option>
+      <option value="30">30秒</option>
+      <option value="60">1分</option>
+      <option value="300">5分</option>
+      <option value="1800">30分</option>
+      <option value="3600">1時間</option>
+      <option value="7200">2時間</option>
+      <option value="14400">4時間</option>
+      <option value="28800">8時間</option>
+      <option value="43200">12時間</option>
+      <option value="86400">24時間</option>
+    </select>
+  </p>
+  <button type="button" onclick="renderGanttChart()">ガントチャート表示</button>
+
+  <div id="timeLine"></div>
+
+  <script type="text/javascript">
+    var animals = ['dog', 'cat', 'python', 'shark', 'monkey', 'deer', 'littlegreenmen'];
+    var data = [];
+
+    function renderGanttChart() {
+      var videoDuration = document.getElementById("videoDuration").value; // video duration
+      var scale = document.getElementById("ganttScale").value;
+      var check = videoDuration / scale;
+
+      if (check > 10000) {
+        alert("動画時間が長すぎるか，スケールが小さすぎます");
+        return;
+      }
+      if (check < 10) {
+        alert("スケールが大きすぎるか，動画時間が短すぎます");
+        return;
+      }
+
+      $("#timeLine").empty();
+      $("#timeLine").ganttViewH({
+        data: randomData(videoDuration),
+        movieLeng: videoDuration,
+        scale: scale
+      });
+    }
+
+    function randomData(time) {
+      data = [];
+      for (var i = 0; i < animals.length; i++) {
+        var obj = {};
+        obj.type = animals[i];
+        obj.items = [];
+        for (var j = 0; j < 5; j++) {
+          var itemObj = {};
+          itemObj.id = Math.random().toString(36).slice(-8);
+          itemObj.startTime = Math.floor(Math.random() * (time / j + 1));
+          itemObj.endTime = Math.floor(Math.random() * (time / j - itemObj.startTime + 1)) + itemObj.startTime;
+          itemObj.value = animals[i];
+          obj.items.push(itemObj);
+
+        }
+        data.push(obj);
+      }
+      return data;
+    }
+  </script>
+</body>
+
+</html>

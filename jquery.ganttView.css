@@ -1,0 +1,301 @@
+/*
+jQuery.ganttView v.0.8.0
+Copyright (c) 2010 JC Grubbs - jc.grubbs@devmynd.com
+MIT License Applies
+*/
+
+#ganttChart{
+}
+
+div.ganttviewh-hzheader-time,
+div.ganttviewh-vtheader,
+div.ganttviewh-vtheader-type-name,
+div.ganttviewh-vtheader-series,
+div.ganttviewh-grid,
+div.ganttviewh-grid-row-cell {
+float: left;
+}
+
+div.ganttviewh-grid-row-cell.last,
+div.ganttviewh-hzheader-time.last {
+border-right: none;
+}
+
+div.ganttviewh {
+border: 1px solid #999;
+}
+
+
+/* Horizontal Header */
+
+div.ganttviewh-hzheader-time {
+/*width: 10px;*/
+height: 20px;
+/*margin-right: 1px;*/
+/*margin-right: 6px;*/
+line-height: 20px;
+color: #2ecc71;
+visibility:hidden;
+text-align: center;
+}
+
+div.ganttviewh-hzheader-time:first-child {
+/*width: 10px;*/
+height: 20px;
+/*margin-right: 1px;*/
+line-height: 21px;
+color: #777;
+visibility: visible;
+}
+
+div.ganttviewh-hzheader-time:nth-child(10n) {
+/*width: 10px;*/
+height: 20px;
+/*margin-right: 1px;*/
+line-height: 21px;
+color: #777;
+visibility: visible;
+}
+
+/* Vertical Header */
+
+div.ganttviewh-vtheader {
+margin-top: 21px;
+width: 20%;
+overflow: hidden;
+background-color: #fff;
+}
+
+div.ganttviewh-vtheader-type {
+overflow: hidden;
+color: #666;
+}
+
+div.ganttviewh-vtheader-type-name {
+width: 100%;
+border-top: 1px solid #d0d0d0;
+line-height: 31px;
+text-align:center;
+}
+
+/*div.ganttviewh-vtheader-type:last-child .ganttviewh-vtheader-type-name{
+width: 100%;
+border-top: 1px solid #d0d0d0;
+height:41px;
+line-height: 41px;
+text-align:center;
+}*/
+
+/* Slider */
+
+div.ganttviewh-slide-container {
+overflow: auto;
+border-left: 1px solid #999;
+padding-left: 3px;
+position:relative;
+}
+
+
+/* Grid */
+div.ganttviewh-grid-row {
+    padding-top:1px;
+    height: 31px;   
+}
+
+div.ganttviewh-grid-row-cell {
+/*width: 5px;*/
+/*width:10px;*/
+height: 31px;
+border-right: 1px solid #f0f0f0;
+border-top: 1px solid #f0f0f0;
+}
+
+div.ganttviewh-grid-row-cell:nth-child(10n) {
+border-right: 1px dashed #d0d0d0;
+}
+
+/*div.ganttviewh-grid-row:last-child .ganttviewh-grid-row-cell{
+    height:41px;
+}*/
+
+
+/* Blocks */
+
+div.ganttviewh-blocks {
+    margin-top: 20px;
+}
+
+div.ganttviewh-block-container {
+height: 31px;
+padding-top: 1px;
+position: relative;
+}
+/*
+div.ganttviewh-block-container:nth-of-type(even) .ganttviewh-block-viewpoint {
+background-color: #27ae60;
+}
+*/
+
+/*ブロックの初期値*/
+div.ganttviewh-block{
+opacity:0.6;
+position: absolute;
+margin-top:3px;
+height: 25px;
+background-color: #2cc36b;
+border: 1px solid #2ecc71;
+border-radius: 3px;
+z-index:4;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+}
+
+/*div.ganttviewh-block-viewpoint {
+background-color: #27ae60;
+border: 1px solid #2ecc71;
+}*/
+
+div.ganttviewh-block-behavior {
+background-color: #2980b9;
+border: 1px solid #3498db;
+}
+
+div.ganttviewh-block-goal{
+background-color: #7f8c8d;
+border: 1px solid #95a5a6;
+}
+
+div.ganttviewh-block-interpret{
+/*background-color: #f39c12;
+border: 1px solid #f1c40f;*/
+background-color: #7f8c8d;
+border: 1px solid #ecf0f1;
+}
+
+
+/*コメントブロックの初期値*/
+div.ganttviewh-block-comment {
+opacity:0.7;
+position: absolute;
+height: 25px;
+background-color: #7f8c8d;
+border: 1px solid #ecf0f1;
+border-radius: 3px;
+z-index:4;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+}
+
+div.ganttviewh-block-comment-ishumanitude {
+background-color: #f1c40f;
+border: 1px solid #ecf0f1;
+}
+
+div.ganttviewh-block-comment-humanitudeimprovement{
+background-color: #e74c3c;
+border: 1px solid #ecf0f1;
+}
+
+div.ganttviewh-block-comment-otherimprovement{
+background-color: #3498db;
+border: 1px solid #ecf0f1;
+}
+
+div.ganttviewh-block-comment-else {
+background-color: #34495e;
+border: 1px solid #ecf0f1;
+}
+
+div.ganttviewh-block-viewpoint:hover {
+opacity:1;
+}
+
+div.ganttviewh-block-goal:hover {
+opacity: 1;
+}
+
+div.ganttviewh-block-behavior:hover {
+opacity: 1;
+}
+
+div.ganttviewh-block-interpret:hover {
+opacity:1;
+}
+
+div.ganttviewh-block-comment:hover {
+opacity: 1;
+}
+
+/*div.ganttviewh-block-comment-humanitude:hover {
+opacity: 1;
+}
+
+div.ganttviewh-block-comment-improvement-humanitude:hover {
+opacity: 1;
+}
+
+div.ganttviewh-block-comment-improvement-other:hover {
+opacity: 1;
+}
+
+div.ganttviewh-block-comment-other:hover {
+opacity: 1;
+}*/
+
+div.ganttviewh-block-text {
+position: absolute;
+height: 12px;
+font-size: 0.8em;
+color: #FFF;
+padding: 2px 3px;
+}
+
+div.ganttviewh-block-comment-text{
+position: absolute;
+height: 12px;
+font-size: 0.8em;
+color: #FFF;
+padding: 2px 3px;
+}
+
+div.ganttviewh-block-comment-text-hidden{
+display:none;
+}
+
+
+
+
+/*progress_bar*/
+
+#duration_canvas{
+position:absolute;
+z-index:2;
+}
+
+#progress_canvas{
+position:absolute;
+z-index:3;
+}
+
+#comment_canvas{
+position:absolute;
+top : 21px;
+z-index:4;
+}
+
+.settleWidth{
+width:8px !important;
+height:8px !important;
+border-radius:100% !important;
+-moz-border-radius:100% !important;
+-webkit-border-radius: 100% !important;
+
+}
+
+
+
+/* Adjustments for jQuery UI Styling */
+
+div.ganttviewh-block-viewpoint div.ui-resizable-handle.ui-resizable-s {
+bottom: 0;
+}
