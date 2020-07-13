@@ -1,6 +1,6 @@
 # gantt-chart-demo
 
-This is a demo of a time-scalable Gantt chart,
+This is a demo of a time-scalable Gantt chart.
 
 ## Demo
 
